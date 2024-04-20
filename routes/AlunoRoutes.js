@@ -10,6 +10,7 @@ const AlunoValidation = require('../midleware/AlunoValidation.js')
 //routes
 router.get('/',  AlunoController.getAlltAluno)
 router.post('/register', AlunoValidation.alunoCreateValidation(), AlunoValidation.validate, AlunoController.register)
+router.post('/clonar', AlunoController.clonar)
 router.post('/login', AlunoValidation.loginValidation(), AlunoValidation.validate,  AlunoController.login)
 router.get('/profile', AlunoValidation.authGuard,  AlunoController.getCurrentAluno)
 router.put('/', AlunoValidation.authGuard, AlunoValidation.alunoUpdateValidation(), AlunoValidation.validate, AlunoValidation.imageUpload.single('profileImage'),  AlunoController.update)

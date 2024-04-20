@@ -23,6 +23,28 @@ module.exports = class AlunoController{
           )
      }
 
+       // registra um usuário
+     static async clonar(req, res){
+          const {nome, matricula, turma} = req.body
+     
+          //verifica se o usuário já existe no sistema
+          const aluno = await Aluno.findOne({matricula})
+     
+          if (aluno) {  
+               res.status(422).json({errors:['matricula já cadastrada']})
+               return
+          }
+        
+          //cria um usuário
+          const newAluno = await Aluno.create({
+               nome,
+               matricula,
+               turma,
+          }) 
+     
+     }
+     
+
      // registra um usuário
      static async register(req, res){
           const {nome, matricula, senha, turma} = req.body
